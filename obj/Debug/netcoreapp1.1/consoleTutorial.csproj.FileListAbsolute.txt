@@ -1,0 +1,8 @@
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\bin\Debug\netcoreapp1.1\consoleTutorial.deps.json
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\bin\Debug\netcoreapp1.1\consoleTutorial.runtimeconfig.json
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\bin\Debug\netcoreapp1.1\consoleTutorial.runtimeconfig.dev.json
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\bin\Debug\netcoreapp1.1\consoleTutorial.dll
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\bin\Debug\netcoreapp1.1\consoleTutorial.pdb
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\obj\Debug\netcoreapp1.1\consoleTutorial.AssemblyInfo.cs
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\obj\Debug\netcoreapp1.1\consoleTutorial.dll
+C:\Users\hpats\Documents\GitHub\c# tutorials\consoleTutorial\obj\Debug\netcoreapp1.1\consoleTutorial.pdb
