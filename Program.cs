@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace TeleprompterConsole
 {
-
     class Program
     {
         static void Main(string[] args)
@@ -52,10 +51,7 @@ namespace TeleprompterConsole
             foreach(var line in words)
             {
                 Console.Write(line);
-                if(!string.IsNullOrWhiteSpace(line))
-                {
-                    await Task.Delay(config.DelayInMilliseconds);
-                }
+                if(!string.IsNullOrWhiteSpace(line)) await Task.Delay(config.DelayInMilliseconds);
             }
             config.SetDone();
         }
@@ -65,14 +61,8 @@ namespace TeleprompterConsole
             {
                 do {
                     var key = Console.ReadKey(true);
-                    if(key.KeyChar == '>')
-                    {
-                        config.UpdateDelay(-10);
-                    }
-                    else if (key.KeyChar == '<')
-                    {
-                        config.UpdateDelay(10);
-                    }
+                    if(key.KeyChar == '>') config.UpdateDelay(-10);
+                    else if (key.KeyChar == '<') config.UpdateDelay(10);
                 } while (!config.Done);
             };
             await Task.Run(work);
