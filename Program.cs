@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using static System.Math;
 
 namespace TeleprompterConsole
 {
-    
+
     class Program
     {
         static void Main(string[] args)
@@ -21,7 +22,7 @@ namespace TeleprompterConsole
                     pause.Wait();
                 }
             }
-            ShowTeleprompter().Wait();
+            RunTeleprompter().Wait();
         }
         static IEnumerable<string> ReadFrom(string file)
         {
@@ -46,7 +47,7 @@ namespace TeleprompterConsole
                 }
             }
         }
-        private static async Task ShowTeleprompter()
+        private static async Task ShowTeleprompter(TeleprompterConfig config)
         {
             var words = ReadFrom("sampleQuotes.txt");
             foreach(var line in words)
@@ -54,28 +55,37 @@ namespace TeleprompterConsole
                 Console.Write(line);
                 if(!string.IsNullOrWhiteSpace(line))
                 {
-                    await Task.Delay(200);
+                    await Task.Delay(config.DelayInMilliseconds);
                 }
             }
+            config.SetDone();
         }
-        private static async Task GetInput()
+        private static async Task GetInput(TeleprompterConfig config)
         {
-            var delay = 200;
             Action work = () => 
             {
                 do {
                     var key = Console.ReadKey(true);
                     if(key.KeyChar == '>')
                     {
-                        delay -= 10;
+                        config.UpdateDelay(-10);
                     }
                     else if (key.KeyChar == '<')
                     {
-                        delay += 10;
+                        config.UpdateDelay(10);
                     }
-                } while (true);
+                } while (!config.Done);
             };
             await Task.Run(work);
+        }
+
+        private static async Task RunTeleprompter()
+        {
+            var config = new TeleprompterConfig();
+            var displayTask = ShowTeleprompter(config);
+
+            var speedTask = GetInput(config);
+            await Task.WhenAny(displayTask, speedTask);
         }
     }
 }
