@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using static System.Math;
 
 namespace TeleprompterConsole
 {
@@ -11,7 +10,7 @@ namespace TeleprompterConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            RunTeleprompter().Wait();
             var lines = ReadFrom("sampleQuotes.txt");
             foreach (var line in lines)
             {
@@ -22,7 +21,7 @@ namespace TeleprompterConsole
                     pause.Wait();
                 }
             }
-            RunTeleprompter().Wait();
+            Console.WriteLine("Hello World!");
         }
         static IEnumerable<string> ReadFrom(string file)
         {
